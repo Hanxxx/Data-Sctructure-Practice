@@ -1,2 +1,2 @@
-# Data-Sctructure-Practice
+# Data-Structure-Python
 Private repository for practice only
