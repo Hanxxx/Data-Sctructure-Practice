@@ -20,7 +20,7 @@ bst.level_order()
 bst.in_order()
 #bst.post_order()
 
-bst.remove_min()
+bst.remove_largest()
 
 bst.level_order()
 bst.in_order()

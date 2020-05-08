@@ -193,6 +193,7 @@ class BST():
         
 
     def __remove_min_non_recur(self):
+        self.__count -= 1
         if self.__root.left == None:
             self.__root = self.__root.right
         prev = self.__root
@@ -216,5 +217,62 @@ class BST():
         self.__root = self.__remove_min_recur(self.__root)
 
 
+    def __remove_largest_non_recur(self):
+        self.__count -= 1
+        if self.__root.right == None:
+            self.__root = self.__root.left
+        cur = self.__root
+        while cur.right.right != None:
+            cur = cur.right
+        cur.right = cur.right.left
+
+    
+    def __remove_largest_recur(self, node):
+        if node.right is None:
+            self.__count -= 1
+            return node.right
+        node.right = self.__remove_largest_recur(node.right)
+        return node
+
+
     def remove_largest(self):
-        pass
+        assert(self.__root != None)
+        self.__remove_largest_non_recur()
+
+
+    def find_min(self, node):
+        if node.left == None:
+            return node
+        return self.find_min(node.left)
+
+
+    def __remove_by_key_recur(self, node, key):
+        if node == None:
+            raise KeyError(f"{key} missing")
+        if node.key > key:
+            node.left = self.__remove_by_key_recur(node.left, key)
+            return node
+        elif node.key < key:
+            node.right = self.__remove_by_key_recur(node.right, key)
+            return node
+        else:
+            self.__count -= 1
+            if node.right == None:
+                return node.left
+            if node.left == None:
+                return node.right
+            
+            # successor is the node to replace the positon of this current node.
+            # It should be the minimum of current node's right child tree.
+            successor = self.find_min(node.right)
+            successor.right = self.__remove_min_recur(node.right)
+            successor.left = node.left
+            return successor
+
+
+    def remove_by_key(self, key):
+        assert(self.__root != None)
+        try:
+            self.__root = self.__remove_by_key_recur(self.__root, key)
+        except KeyError as e:
+            print(e)
