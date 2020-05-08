@@ -1,3 +1,4 @@
+import random
 def binary_search_floor(nums, target):
     l, r = 0, len(nums) - 1
     while (l <= r):

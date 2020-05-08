@@ -10,21 +10,21 @@ class BST():
     
     def __init__(self):
         self.__root = None
-        self.__count = 0
+        self.__size = 0
 
     
     @property
     def size(self):
-        return self.__count
+        return self.__size
 
 
     def is_empty(self):
-        return self.__count == 0
+        return self.__size == 0
 
 
     def __insert_recur(self, node, key, value):
         if node == None:
-            self.__count += 1
+            self.__size += 1
             return TreeNode(key, value)
         if key > node.key:
             node.right = self.__insert_recur(node.right, key, value)
@@ -193,7 +193,7 @@ class BST():
         
 
     def __remove_min_non_recur(self):
-        self.__count -= 1
+        self.__size -= 1
         if self.__root.left == None:
             self.__root = self.__root.right
         prev = self.__root
@@ -206,7 +206,7 @@ class BST():
 
     def __remove_min_recur(self, node):
         if node.left == None:
-            self.__count -= 1
+            self.__size -= 1
             return node.right
         node.left = self.__remove_min_recur(node.left)
         return node
@@ -218,7 +218,7 @@ class BST():
 
 
     def __remove_largest_non_recur(self):
-        self.__count -= 1
+        self.__size -= 1
         if self.__root.right == None:
             self.__root = self.__root.left
         cur = self.__root
@@ -229,7 +229,7 @@ class BST():
     
     def __remove_largest_recur(self, node):
         if node.right is None:
-            self.__count -= 1
+            self.__size -= 1
             return node.right
         node.right = self.__remove_largest_recur(node.right)
         return node
@@ -256,7 +256,7 @@ class BST():
             node.right = self.__remove_by_key_recur(node.right, key)
             return node
         else:
-            self.__count -= 1
+            self.__size -= 1
             if node.right == None:
                 return node.left
             if node.left == None:
@@ -276,3 +276,32 @@ class BST():
             self.__root = self.__remove_by_key_recur(self.__root, key)
         except KeyError as e:
             print(e)
+
+
+    def __find_floor_recur(self, node, key):
+        if node == None:
+            return None
+        if node.key == key:
+            return node.value
+        if node.key > key:
+            return self.__find_floor_recur(node.left, key)
+        else:
+            tmp = self.__find_floor_recur(node.right, key)
+            return tmp if tmp else node
+            
+
+    def find_floor(self, key):
+        assert(self.__root != None)
+        return self.__find_floor_recur(self, self.__root, key)
+
+
+    def __find_ceil_recur(self, node, key):
+        if node == None:
+            return None
+        if node.key == key:
+            return node
+        if node.key < key:
+            return self.__find_ceil_recur(node.right, key)
+        else:
+            tmp = self.__find_ceil_recur(node.left, key)
+            return tmp is tmp else node
