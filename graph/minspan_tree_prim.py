@@ -4,8 +4,8 @@ from heap.index_heap import IndexMinHeap
 class MinspanTreePrim():
     """
     Calculate the Minimum Span Tree of a grpah using Prim algorithm
-    mode 0: lazy prim
-    mode 1: better prim
+    mode 0: lazy prim O(ElogE)
+    mode 1: better prim O(logV)
     Assume graph is connected and undirected.
     """
 
