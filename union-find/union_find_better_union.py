@@ -1,4 +1,7 @@
-class UnionFindPathCompres():
+class UnionFindBetterUnion():
+    """
+    Better Union using rank (height of the tree).
+    """
     def __init__(self, n):
         self.__parent = [i for i in range(n)]
         self.__rank = [1 for _ in range(n)]
@@ -17,7 +20,6 @@ class UnionFindPathCompres():
     def find(self, p):
         cur = p
         while cur != self.__parent[cur]:
-            self.__parent[cur] = self.__parent[self.__parent[cur]]
             cur = self.__parent[cur]
         return cur
 

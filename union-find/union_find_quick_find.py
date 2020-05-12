@@ -1,11 +1,8 @@
-"""
-Union Find: array implementation
-union(p, q)
-find(p)
-isConnected(p, q)
-"""
 
 class UnionFindQuickFind():
+    """
+    Union Find: array implementation
+    """
     def __init__(self, n):
         self.__ids = [i for i in range(n)]
 
