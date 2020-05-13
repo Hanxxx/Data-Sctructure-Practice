@@ -50,7 +50,7 @@ class MinspanTreePrim():
             if self.visited[w] == False:
                 if not self.heap.contains(w):
                     self.heap.push(w, edge)
-                elif edge < self.heap.get_value(idx):
+                elif edge < self.heap.get_value(w):
                     self.heap.modify(w, edge)
 
 
@@ -63,3 +63,10 @@ class MinspanTreePrim():
             self.mst.append(edge)
             self.__better_prim_visit_helper(idx)
             
+
+    def print_result(self):
+        print('Min Span Tree edges:')
+        count = 0
+        for edge in self.mst:
+            count += edge.weight
+        print(f'MST Weight: {count:.2f}')

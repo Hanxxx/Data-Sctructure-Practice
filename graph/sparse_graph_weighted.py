@@ -25,7 +25,7 @@ class SparseGraphWeighted(GraphCommon):
     
     def get_neighbors(self, v):
         for edge in self.__graph[v]:
-            yield edge.other(v)
+            yield edge
             
     
     def print_graph(self):

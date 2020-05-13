@@ -1,5 +1,5 @@
 import heapq
-from union_find.union_find_path_compress import UnionFindPathCompres as UF
+from union_find.union_find_path_compress import UnionFindPathCompress as UF
 
 class MinspanTreeKrusk():
     """
@@ -27,3 +27,11 @@ class MinspanTreeKrusk():
             if not self.uf.isConnected(edge.v, edge.w):
                 self.mst.append(edge)
                 self.uf.union(edge.v, edge.w)
+
+
+    def print_result(self):
+        print('Min Span Tree edges:')
+        count = 0
+        for edge in self.mst:
+            count += edge.weight
+        print(f'MST Weight: {count:.2f}')   

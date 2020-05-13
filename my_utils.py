@@ -15,4 +15,3 @@ def timer(name):
         return wrapper
 
     return _timer
-        

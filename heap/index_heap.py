@@ -230,7 +230,7 @@ class IndexMinHeap(object):
         assert(not self.is_empty())
         top_idx = self.__index[1]
         top = self.__data[top_idx]
-        self.__r_index[top] = -1
+        self.__r_index[top_idx] = -1
         self.__index[1] = self.__index[self.__size]
         self.__r_index[self.__index[1]] = 1
         self.__size -= 1

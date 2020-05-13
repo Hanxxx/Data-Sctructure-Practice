@@ -1,4 +1,4 @@
-class UnionFindPathCompres():
+class UnionFindPathCompress():
     def __init__(self, n):
         self.__parent = [i for i in range(n)]
 
@@ -23,4 +23,4 @@ class UnionFindPathCompres():
 
 
     def isConnected(self, p, q):
-        return self.__find(p) == self.__find(q)
+        return self.find(p) == self.find(q)

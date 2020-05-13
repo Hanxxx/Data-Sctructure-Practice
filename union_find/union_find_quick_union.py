@@ -12,4 +12,4 @@ class UnionFindQuickUnion():
         return cur
 
     def isConnected(self, p, q):
-        return self.__find(p) == self.__find(q)
+        return self.find(p) == self.find(q)

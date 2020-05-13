@@ -39,4 +39,4 @@ class DenseGrpahWeighted(GraphCommon):
     def get_neighbors(self, v):
         for i in range(self.n):
             if self.__graph[v][i] != None:
-                yield i
+                yield self.__graph[v][i]
